@@ -1,0 +1,47 @@
+
+	<ul>
+		<li><a href="/home/todolist">To do list</a></li>
+		<li><a href="/home/classlist">Class List</a></li>
+		<li><a href="/home/login">Login</a></li>
+		<li><a href="/home/main">Main</a></li>
+	</ul> 
+	<div id ="side">
+		<div class="vertical-menu">
+			<a href="#" id="list_title">CLASS LIST</a>
+			<% @sublist.each do |e| %>
+				<a href="/home/classlist/<%= e.cateName %>" class ="class_list"><%= e.cateName %></a>
+			<% end %>
+		</div>
+	</div>
+
+
+
+	<div id="main_section">
+		<!-- note taking part-->
+		<div class = "note">
+			
+			
+			
+			<form action="/home/listWrite" method="POST">
+						
+			<p class= "note_info">Class</p>
+				
+			<select name="category">
+			<% @sublist.each do |e| %>
+				<option value="<%= e.cateName %>"><%= e.cateName %></option>
+			<% end %>
+			</select>
+		
+			<p class= "note_info">Date <input type="date" id="datepicker" name="date" value="<%=Time.now.strftime("%Y-%m-%d")%>"></p>
+			<p class= "note_info">Title <input type = "text" id="title" name="title" placeholder="제목쓰셩" ></input></p>
+			<textarea id="note_section" rows="20" cols="100" placeholder = "내용쓰셩">
+			</textarea name="content" >
+			<br/>
+			<div >
+				<button id="save" class="note_button" type="submit">Save</button>
+				<button id="image" class="note_button">image</button>
+			</div>
+		</form>
+		
+		</div>
+	</div>
