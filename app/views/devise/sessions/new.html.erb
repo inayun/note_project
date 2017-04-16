@@ -1,0 +1,28 @@
+<header>
+	<h1>Secret Note-Taking Diary</h1>
+</header>
+<div id="section">
+	<div id="login_section">
+		<form name="login_form" method="post" >
+			<br />
+    	  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+			<p class="id_pw"><%= f.email_field :email, placeholder: "ID", autofocus: true %></p><br />
+			<p class="id_pw"><%= f.password_field :password, placeholder: "Password", autocomplete: "off" %></p>
+			<br />
+			  <% if devise_mapping.rememberable? -%>
+	            <%= f.check_box :remember_me %>
+	            <%= f.label :remember_me %>
+	          <% end -%>
+			  <br />
+			  <button id="login" class="btn-info" ><a href =" /users/sign_in"><%= f.submit "Log in"%></a></button>
+		  <% end %>
+			  <button id="signup" class="btn-info"><a href ="/users/sign_up">Sign up</a></button>
+		</form>    
+	</div>
+</div>
+<footer>
+</footer>
+
+
+  
+

@@ -1,8 +1,13 @@
 Rails.application.routes.draw do
-  root 'home#login'
+  devise_for :users do
+    get '/users/sign_out' => 'devise/sessions#destroy'
+  end
+  
+  root 'home#main'
 
   get 'home/classlist' => 'home#classlist'
   get 'home/classlist/:cateName' => 'home#classlist'
+  get 'home/forbid' => 'home#forbid'
 
 
   get 'home/main' => 'home#main'

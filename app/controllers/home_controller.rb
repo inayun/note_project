@@ -3,50 +3,61 @@ class HomeController < ApplicationController
   end
   
   def classlist
+    if user_signed_in?
+      @sublist = Category.all
+      if params[:cateName].present?
+        @notelist = Notelist.where(noteCate: params[:cateName])
+      else  
+        @notelist = Notelist.all
+      end
+      render :layout => 'classlist'
     
-    
-    @sublist = Category.all
-    
-    
-    if params[:cateName].present?
-      @notelist = Notelist.where(noteCate: params[:cateName])
-    else  
-      @notelist = Notelist.all
+    else
+      redirect_to '/home/forbid'
     end
-    
 
-    render :layout => 'classlist'
-    
   end
   
   def main
-    render :layout => 'main'
+    if user_signed_in?
+        render :layout => 'main'
+    else
+      redirect_to '/users/sign_in'
+    end
   end
   
   def login
+    
   end
   
   def todolist
-    render :layout => 'todolist'
+    if user_signed_in?
+      render :layout => 'todolist'
+    else    
+      redirect_to '/home/forbid'
+    end
   end
   
   def note
-    
-    @sublist = Category.all
-    
+    if user_signed_in?
+      @sublist = Category.all
+    else    
+      redirect_to '/home/forbid'
+    end
   end
   
    def listWrite
-    newList = Notelist.new
-    newList.noteName = params[:title]
-    newList.noteCont = params[:content]
-    newList.noteCate = params[:category]
-    newList.date = params[:date]
-    newList.save
-    
-    redirect_to "/home/classlist"
-    
+     
+    if user_signed_in?
+      newList = Notelist.new
+      newList.noteName = params[:title]
+      newList.noteCont = params[:content]
+      newList.noteCate = params[:category]
+      newList.date = params[:date]
+      newList.save
+      redirect_to "/home/classlist"
+    else    
+      redirect_to '/home/forbid'
+    end
   end
-  
-  
 end

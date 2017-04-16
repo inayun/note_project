@@ -21,11 +21,7 @@
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
   
-  
-  <%= stylesheet_link_tag   'fullCalendar','data-turbolinks-track' => true %>
-  <%= stylesheet_link_tag   'fullCalendar.print' , media: 'print' , 'data-turbolinks-track' => true %>
-  
-  
+ 
   <!-- fullCalendar 2.2.5-->
   <link rel="stylesheet" href="./css/fullcalendar.min.css">
   <link rel="stylesheet" href="./css/fullcalendar.print.css" media="print">
@@ -35,7 +31,7 @@
        folder instead of downloading all of them to reduce the load. -->
   <link rel="stylesheet" href="./css/_all-skins.min.css">
   
-  <%= javascript_include_tag 'main', 'fullCalendar', 'calendar', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'main', 'data-turbolinks-track' => true %>
   
   <%= csrf_meta_tags %>
 </head>
