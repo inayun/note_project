@@ -1,10 +1,11 @@
-class CreateCategories < ActiveRecord::Migration
+class CreateTodos < ActiveRecord::Migration
   def change
-    create_table :categories do |t|
+    create_table :todos do |t|
+
         t.string :email,              null: false, default: ""
-        t.string :cateName
+        t.string :checker
+        t.string :dolist
         
-  
       t.timestamps null: false
     end
   end

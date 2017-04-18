@@ -14,15 +14,12 @@
 	            <%= f.label :remember_me %>
 	          <% end -%>
 			  <br />
-			  <button id="login" class="btn-info" ><a href =" /users/sign_in"><%= f.submit "Log in"%></a></button>
-		  <% end %>
-			  <button id="signup" class="btn-info"><a href ="/users/sign_up">Sign up</a></button>
+			  <%= f.submit "Log in", class: "btn-info"%>
+		  
+			  <a id="signup" class="btn-info" href ="/users/sign_up">Sign up</a>
+		    <% end %>
 		</form>    
 	</div>
 </div>
 <footer>
 </footer>
-
-
-  
-

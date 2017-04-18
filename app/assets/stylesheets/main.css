@@ -46,3 +46,27 @@
 
 }
 
+.simple-calendar {
+    width : 80%;
+    margin: auto;
+    margin-top: 50px;
+}
+
+.calendar-heading {
+    margin-bottom: 35px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.calendar-heading a{
+    background-color: white;
+}
+.calendar-heading a:hover {
+    color : #DDD;
+}
+
+
+a{
+    color: pink;
+}
+

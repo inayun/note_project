@@ -3,14 +3,15 @@ body{
 }
 
 #section{
-	height: 280px;
-	width: 800px;
+	height: 470px;
+	width: 1000px;
 	background-color: #FFA2AD;
 	font-family: Brown, Verdana, sans-serif;
 	text-align: center;
 	position : relative ;
 	padding : 50px;
 	margin : auto;
+	margin-top: 40px;
 }
 
 header{
@@ -30,6 +31,9 @@ header{
 	border-style: dotted;
 	border-radius: 50px;
 	margin : auto;
+	margin-top: inherit;
+    padding-top: 30px;
+
 }
 
 
@@ -43,7 +47,8 @@ input.id_pw_input {
 		display: inline-block;
 	}
 
-button.btn-info{
+
+a.btn-info{
 	background-color: #FFA2AD;
 	color : white ;
 	border : none;
@@ -51,3 +56,12 @@ button.btn-info{
 	margin: auto;
 	padding : 13px;
 }
+input.btn-info{
+	background-color: #FFA2AD;
+	color : white ;
+	border : none;
+	font-size: 18px;
+	margin: auto;
+	padding : 13px;
+}
+

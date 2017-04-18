@@ -2,7 +2,6 @@
 	<ul>
 		<li><a href="/home/todolist">To do list</a></li>
 		<li><a href="/home/classlist">Class List</a></li>
-		<li><a href="/home/login">Login</a></li>
 		<li><a href="/home/main">Main</a></li>
 	</ul> 
 
@@ -13,7 +12,7 @@
 		<div class="vertical-menu">
 			<a href="#" id="list_title">CLASS LIST</a>
 			
-			
+			<a class ="class_list"><%= @usermail %></a>
 			<% @sublist.each do |e| %>
 				<a href="/home/classlist/<%= e.cateName %>" class ="class_list"><%= e.cateName %></a>
 			<% end %>
@@ -22,6 +21,10 @@
 			<form action="/home/setadd" method="POST">
             	<input type="text" name="newsub" placeholder="과목이름을 쓰시오">
             	<input type="submit" value="+">
+       		</form>
+       		<form action="/home/setdel" method="POST">
+            	<input type="text" name="delsub" placeholder="삭제이름을 쓰시오">
+            	<input type="submit" value="-">
        		</form>
 		</div>
 	</div>
@@ -32,8 +35,9 @@
 	<div id="main_section">
 		<!-- class list part-->
 		<div id = "list_section">
-			<button class ="search" id="searchbutton">Search</button><input type = "text" class="search">
-			
+			<form action="/home/searchlist" method="GET">
+    			<p><input type="text" class ="search" name="keyword" placeholder="Search" id="searchbutton"><input type="submit" ="검색" value="검색" class="search"></p>
+    		</form>
 
 			<div id="scroll-marginer">
 				<table id = "note_list">
@@ -55,7 +59,7 @@
 							<tr>
 								<td class="cheker"><input type="checkbox" class="checkbox" name="check1"></td>
 								<td class="no"><%= p.id %></td>
-								<td class="lec_ti"><%= p.noteName %></td>
+								<td class="lec_ti"><a href="/home/renote/<%=p.id%>"><%= p.noteName %></a></td>
 								<td class="date"><%= p.date %></td>
 							</tr>
 							<% end %>
@@ -64,7 +68,7 @@
 				</div>
 			</div>
 
-			<button class="list_button" id ="takingnote"><a href="/home/note">Taking note</a></button>
+			<button class="list_button" id ="takingnote"><a class="list_button" href="/home/note">Taking note</a></button>
 			<button class="list_button" id ="delete">Delete</button>
 		</div>
 	</div>

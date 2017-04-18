@@ -4,18 +4,19 @@ class HomeController < ApplicationController
   
   def classlist
     if user_signed_in?
-      @sublist = Category.all
+      @sublist = Category.where(email: current_user.email)
+      @usermail = current_user.email
+      
       if params[:cateName].present?
-        @notelist = Notelist.where(noteCate: params[:cateName])
+        @notelist = Notelist.where(["noteCate = ? and email = ?", params[:cateName] , current_user.email])
       else  
-        @notelist = Notelist.all
+        @notelist = Notelist.where(email: current_user.email)
       end
+      
       render :layout => 'classlist'
-    
     else
       redirect_to '/home/forbid'
     end
-
   end
   
   def main
@@ -27,11 +28,12 @@ class HomeController < ApplicationController
   end
   
   def login
-    
+      render :layout => 'todolist'
   end
   
   def todolist
     if user_signed_in?
+      @currentUser = current_user.email
       render :layout => 'todolist'
     else    
       redirect_to '/home/forbid'
@@ -40,16 +42,28 @@ class HomeController < ApplicationController
   
   def note
     if user_signed_in?
-      @sublist = Category.all
+      @sublist = Category.where(email: current_user.email)
     else    
       redirect_to '/home/forbid'
     end
   end
   
-   def listWrite
-     
+  def renote
+    if user_signed_in?
+      @sublist = Category.where(email: current_user.email)
+      @readone = Notelist.find(params[:id])
+      if @readone.email != current_user.email
+        redirect_to '/home/forbid'
+      end
+    else    
+      redirect_to '/home/forbid'
+    end
+  end
+  
+  def listWrite
     if user_signed_in?
       newList = Notelist.new
+      newList.email = current_user.email
       newList.noteName = params[:title]
       newList.noteCont = params[:content]
       newList.noteCate = params[:category]
@@ -59,5 +73,32 @@ class HomeController < ApplicationController
     else    
       redirect_to '/home/forbid'
     end
+  end
+  
+  def setadd
+    newCate = Category.new
+    newCate.email = current_user.email
+    newCate.cateName = params[:newsub]
+    newCate.save
+    redirect_to "/home/classlist"
+  end
+  def setdel
+    delCate = Category.where(cateName: params[:delsub])
+    delList = Notelist.where(noteCate: params[:delsub])
+    
+    delCate.each do |x|
+      x.destroy
+    end
+    delList.each do |y|
+      y.destroy
+    end
+    redirect_to "/home/classlist"
+  end
+  def searchlist
+    @sublist = Category.where(email: current_user.email)    
+    @keyword= params[:keyword]
+    @serti= Notelist.where(["noteName like ? and email = ?", "%#{@keyword}%",current_user.email])
+    @sercon= Notelist.where(["noteCont like ? and email = ?",  "%#{@keyword}%",current_user.email])
+    render :layout => 'classlist'
   end
 end

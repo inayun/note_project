@@ -8,13 +8,16 @@ Rails.application.routes.draw do
   get 'home/classlist' => 'home#classlist'
   get 'home/classlist/:cateName' => 'home#classlist'
   get 'home/forbid' => 'home#forbid'
-
+  get 'home/renote/:id' => 'home#renote'
+  get 'home/searchlist' => 'home#searchlist'
 
   get 'home/main' => 'home#main'
   get 'home/login' => 'home#login'
   get 'home/todolist' => 'home#todolist'
   get 'home/note' => 'home#note'
   post 'home/listWrite' => 'home#listWrite'
+  post 'home/setadd' => 'home#setadd'
+  post 'home/setdel' => 'home#setdel'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

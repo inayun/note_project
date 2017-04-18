@@ -12,7 +12,7 @@
 			<% end %>
 		</div>
 	</div>
-	
+
 
 
 	<div id="main_section">
@@ -27,14 +27,15 @@
 				
 			<select name="category">
 			<% @sublist.each do |e| %>
-				<option value="<%= e.cateName %>"><%= e.cateName %></option>
+				<option value="<%= e.cateName %>"<% if e.cateName == @readone.noteCate%><%="selected"%><%end%>><%= e.cateName %></option>
 			<% end %>
 			</select>
 		
-			<p class= "note_info">Date <input type="date" id="datepicker" name="date" value="<%=Time.now.strftime("%Y-%m-%d")%>"></p>
-			<p class= "note_info">Title <input type = "text" id="title" name="title" placeholder="제목쓰셩" ></input></p>
-			<textarea id="note_section" name="content" rows="20" cols="100" placeholder = "내용쓰셩">
-			</textarea>
+			<p class= "note_info">Date <input type="date" id="datepicker" name="date" value="<%=@readone.date%>"></p>
+			<p class= "note_info">Title <input type = "text" id="title" name="title" value="<%=@readone.noteName%>"placeholder="제목쓰셩" ></input></p>
+			<textarea id="note_section" rows="20" cols="100" placeholder = "내용쓰셩">
+			<%= @readone.noteCont %>
+			</textarea name="content" >
 			<br/>
 			<div >
 				<button id="save" class="note_button" type="submit">Save</button>

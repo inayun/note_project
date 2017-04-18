@@ -1,0 +1,100 @@
+<ul>
+	<li><a href="/home/todolist">To do list</a></li>
+	<li><a href="/home/classlist">Class List</a></li>
+	<li><a href="/home/main">Main</a></li>
+</ul>
+
+<div id ="side">
+	<div class="vertical-menu">
+		<a href="#" id="list_title">CLASS LIST</a>
+		<a class ="class_list"><%= @usermail %></a>
+		<% @sublist.each do |e| %>
+			<a href="/home/classlist/<%= e.cateName %>" class ="class_list"><%= e.cateName %></a>
+		<% end %>
+		
+		<form action="/home/setadd" method="POST">
+           	<input type="text" name="newsub" placeholder="과목이름을 쓰시오">
+           	<input type="submit" value="+">
+      	</form>
+      	<form action="/home/setdel" method="POST">
+           	<input type="text" name="delsub" placeholder="삭제이름을 쓰시오">
+           	<input type="submit" value="-">
+      	</form>
+	</div>
+</div>
+
+<div id="main_section">
+	<div id = "list_section">
+		<form action="/home/searchlist" method="GET">
+    			<p><input type="text" class ="search" name="keyword" placeholder="Search" id="searchbutton"><input type="submit" value="검색" class="search"></p>
+    		</form>
+		<h1>제목 검색결과</h1>
+		<% if @serti.empty? %>
+			<div id="scroll-marginer">제목 검색결과 없음</div>
+		<% else %>
+			<div id="scroll-marginer">
+				<table id = "note_list">
+					<thead>
+						<tr>
+							<th class="cheker"><input type="checkbox" class="checkbox" name="allcheck"></th>
+							<th class="no">No</th>
+							<th class="lec_ti">Title</th>
+							<th class="date">Date</th>
+						</tr>
+					</thead>
+				</table>
+				
+				<div id="scroll-wrapper">
+					<table>
+						<tbody>
+							<% @serti.each do |p|%>	
+							<tr>
+								<td class="cheker"><input type="checkbox" class="checkbox" name="check1"></td>
+								<td class="no"><%= p.id %></td>
+								<td class="lec_ti"><a href="/home/renote/<%=p.id%>"><%= p.noteName %></a></td>
+								<td class="date"><%= p.date %></td>
+							</tr>
+							<% end %>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		<% end %>
+		<h1>내용 검색결과</h1>
+		<% if @sercon.empty? %>
+			<div id="scroll-marginer">내용 검색결과 없음</div>
+		<% else %>
+			<div id="scroll-marginer">
+				<table id = "note_list">
+					<thead>
+						<tr>
+							<th class="cheker"><input type="checkbox" class="checkbox" name="allcheck"></th>
+							<th class="no">No</th>
+							<th class="lec_ti">Title</th>
+							<th class="date">Date</th>
+						</tr>
+					</thead>
+				</table>
+				
+				<div id="scroll-wrapper">
+					<table>
+						<tbody>
+							<% @sercon.each do |p|%>	
+							<tr>
+								<td class="cheker"><input type="checkbox" class="checkbox" name="check1"></td>
+								<td class="no"><%= p.id %></td>
+								<td class="lec_ti"><a href="/home/renote/<%=p.id%>"><%= p.noteName %></a></td>
+								<td class="date"><%= p.date %></td>
+							</tr>
+							<% end %>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		<% end %>
+			
+
+			<button class="list_button" id ="takingnote"><a href="/home/note" class="list_button">Taking note</a></button>
+			<button class="list_button" id ="delete">Delete</button>
+		</div>
+	</div>
