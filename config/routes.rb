@@ -3,7 +3,7 @@ Rails.application.routes.draw do
     get '/users/sign_out' => 'devise/sessions#destroy'
   end
   
-  root 'home#main'
+  root 'home#main' #홈클래스/메인메소드
 
   get 'home/classlist' => 'home#classlist'
   get 'home/classlist/:cateName' => 'home#classlist'

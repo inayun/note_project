@@ -21,9 +21,9 @@ class HomeController < ApplicationController
   
   def main
     if user_signed_in?
-        render :layout => 'main'
+        render :layout => 'main' #메인css만 적용시켜 주기 위해서 render 함수를 씀
     else
-      redirect_to '/users/sign_in'
+      redirect_to '/users/sign_in' #로그인이 안되있을경우는 자동적으로 로그인페이지로 돌려버림
     end
   end
   
@@ -75,14 +75,14 @@ class HomeController < ApplicationController
     end
   end
   
-  def setadd
+  def setadd #과목추가하는 기능
     newCate = Category.new
     newCate.email = current_user.email
     newCate.cateName = params[:newsub]
     newCate.save
     redirect_to "/home/classlist"
   end
-  def setdel
+  def setdel #과목삭제하는 기능
     delCate = Category.where(cateName: params[:delsub])
     delList = Notelist.where(noteCate: params[:delsub])
     
@@ -94,7 +94,7 @@ class HomeController < ApplicationController
     end
     redirect_to "/home/classlist"
   end
-  def searchlist
+  def searchlist #검색한거 보여주는 기능
     @sublist = Category.where(email: current_user.email)    
     @keyword= params[:keyword]
     @serti= Notelist.where(["noteName like ? and email = ?", "%#{@keyword}%",current_user.email])
